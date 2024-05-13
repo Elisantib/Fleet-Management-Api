@@ -2,7 +2,11 @@ package com.fma.Fleet.Management.Api.services;
 
 import com.fma.Fleet.Management.Api.models.TaxisModel;
 import com.fma.Fleet.Management.Api.repositories.TaxisRepository;
+import org.springdoc.core.converters.models.PageableAsQueryParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,8 +22,8 @@ public class TaxisServiceImpl implements TaxisService {
 
     //listar todos los taxis
     @Override
-    public ArrayList<TaxisModel> getTaxis(){
-        return (ArrayList<TaxisModel>) taxisRepository.findAll();
+    public Page<TaxisModel> getTaxis(Pageable pageable){
+        return taxisRepository.findAll(pageable);
     }
 
 

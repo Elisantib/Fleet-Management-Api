@@ -3,6 +3,8 @@ package com.fma.Fleet.Management.Api.controllers;
 import com.fma.Fleet.Management.Api.models.TaxisModel;
 import com.fma.Fleet.Management.Api.services.TaxisServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,8 +26,8 @@ public class TaxisController {
     TaxisServiceImpl taxisService;
 
     @GetMapping("/lista")
-    public ArrayList<TaxisModel> getTaxis() {
-        return this.taxisService.getTaxis();
+    public Page<TaxisModel> getTaxis(Pageable pageable) {
+        return this.taxisService.getTaxis(pageable);
     }
 
 
