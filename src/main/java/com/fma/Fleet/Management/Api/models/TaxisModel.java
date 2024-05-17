@@ -2,6 +2,9 @@ package com.fma.Fleet.Management.Api.models;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 //Models representa la estructura de los datos y suelen tener anotaciones
 // o metadatos para mapearlos a las tablas de la base de datos.
 @Entity//esta clase es una entidad en el contexto de JPA. Mapea a una tabla en una BD
@@ -15,6 +18,9 @@ public class TaxisModel {
 
     @Column //indica que el campo 'plate' se mapeará a una columna en la tabla de la base de datos
     private String plate;
+
+    //@OneToMany(mappedBy = "TaxisModel", cascade = CascadeType.ALL)
+    //private List<TrajectoriesModel> trajectoriesList = new ArrayList<>();
 
     //METODOS GETTER Y SETTER para acceder y modificar atributos fuera de la clase
     public Long getId() {

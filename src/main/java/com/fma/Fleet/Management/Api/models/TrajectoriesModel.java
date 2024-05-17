@@ -15,58 +15,30 @@ public class TrajectoriesModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    private Long taxi_id;
+    @ManyToOne
+    @JoinColumn(name = "taxi_id", referencedColumnName = "id")
+    private TaxisModel taxisModel;
 
     @Column
     @Timestamp
     private LocalDateTime date;
 
     @Column
-    private Integer latitude;
+    private Double latitude;
 
     @Column
-    private Integer Longitude;
+    private Double Longitude;
 
     //Getter and Setter
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getTaxi_id() {
-        return taxi_id;
-    }
-
-    public void setTaxi_id(Long taxi_id) {
-        this.taxi_id = taxi_id;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
-
-    public Integer getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(Integer latitude) {
-        this.latitude = latitude;
-    }
-
-    public Integer getLongitude() {
-        return Longitude;
-    }
-
-    public void setLongitude(Integer longitude) {
-        Longitude = longitude;
-    }
+    public Long getId() {return id;}
+    public void setId(Long id) {this.id = id;}
+    public TaxisModel getTaxisModel() {return taxisModel;}
+    public void setTaxisModel(TaxisModel taxisModel) {this.taxisModel = taxisModel;}
+    public LocalDateTime getDate() {return date;}
+    public void setDate(LocalDateTime date) {this.date = date;}
+    public Double getLatitude() {return latitude;}
+    public void setLatitude(Double latitude) {this.latitude = latitude;}
+    public Double getLongitude() { return Longitude; }
+    public void setLongitude(Double longitude) { Longitude = longitude; }
 }
