@@ -13,11 +13,17 @@ import java.util.List;
 public interface TrajectoriesRepository extends JpaRepository<TrajectoriesModel, Long> {
 
     @Query(value = "SELECT * FROM trajectories WHERE taxi_id = :taxi_id AND " +
-            "TO_CHAR(date, 'dd-MM-yyyy') = :date offset (:pageNumber * :pageSize) " +
+            "TO_CHAR(date, 'dd-mm-yyyy') = :date offset (:pageNumber * :pageSize) " +
             "rows fetch next :pageSize rows only", nativeQuery = true)
     List<TrajectoriesModel> findTrajectoriesByIdAndDate(
-            Long taxi_id,
-            String date,
-            Integer pageNumber, Integer pageSize);
+            Long taxi_id, String date, Integer pageNumber, Integer pageSize);
+
+    @Query(value = "SELECT ID, TAXI_ID, date, LONGITUDE, LATITUDE " +
+            "FROM (" +
+            "SELECT ID, TAXI_ID, date, LONGITUDE, LATITUDE, " +
+            "ROW_NUMBER() OVER (PARTITION BY TAXI_ID ORDER BY date DESC) as row_num " +
+            "FROM public.TRAJECTORIES) AS ranked " +
+            "WHERE row_num = 1", nativeQuery = true)
+    List<TrajectoriesModel> findLastTrajectory();
 
 }

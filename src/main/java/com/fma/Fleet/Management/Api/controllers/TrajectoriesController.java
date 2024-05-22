@@ -1,5 +1,6 @@
 package com.fma.Fleet.Management.Api.controllers;
 
+import com.fma.Fleet.Management.Api.DTO.LastTrajectoryDTO;
 import com.fma.Fleet.Management.Api.models.TaxisModel;
 import com.fma.Fleet.Management.Api.models.TrajectoriesModel;
 import com.fma.Fleet.Management.Api.services.TrajectoriesServiceImpl;
@@ -36,10 +37,18 @@ public class TrajectoriesController {
             description = "get all latitude, longitude and time trajectories according to taxi id and date")
     public List<TrajectoriesModel> getTrajectoriesByTaxi(
             @RequestParam Long taxi_id,
-            @RequestParam @DateTimeFormat(pattern = "dd-MM-yyyy") Date date,
+            @RequestParam @DateTimeFormat(pattern = "dd-mm-yyyy") Date date,
             @RequestParam Integer pageNumber,
             @RequestParam Integer pageSize) {
         return this.trajectoriesService.getTrajectoriesById(taxi_id, date, pageNumber, pageSize);
+    }
+
+    @GetMapping("/last-trajectory")
+    @Operation(summary = "Get last trajectory by taxi")
+    public List<LastTrajectoryDTO> getLastTrajectoryByTaxi(){
+        return this.trajectoriesService.getLastTrajectory();
+
+
     }
 
 

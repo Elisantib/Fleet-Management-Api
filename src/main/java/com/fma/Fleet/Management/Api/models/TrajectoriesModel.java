@@ -17,7 +17,7 @@ public class TrajectoriesModel {
 
     @ManyToOne
     @JoinColumn(name = "taxi_id", referencedColumnName = "id")
-    private TaxisModel taxisModel;
+    private TaxisModel taxiId;
 
     @Column
     @Timestamp
@@ -33,8 +33,8 @@ public class TrajectoriesModel {
 
     public Long getId() {return id;}
     public void setId(Long id) {this.id = id;}
-    public TaxisModel getTaxisModel() {return taxisModel;}
-    public void setTaxisModel(TaxisModel taxisModel) {this.taxisModel = taxisModel;}
+    public TaxisModel getTaxisModel() {return taxiId;}
+    public void setTaxisModel(TaxisModel taxiId) {this.taxiId = taxiId;}
     public LocalDateTime getDate() {return date;}
     public void setDate(LocalDateTime date) {this.date = date;}
     public Double getLatitude() {return latitude;}

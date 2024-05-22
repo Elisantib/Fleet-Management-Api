@@ -1,5 +1,6 @@
 package com.fma.Fleet.Management.Api.services;
 
+import com.fma.Fleet.Management.Api.DTO.LastTrajectoryDTO;
 import com.fma.Fleet.Management.Api.models.TaxisModel;
 import com.fma.Fleet.Management.Api.models.TrajectoriesModel;
 import org.springframework.data.domain.Page;
@@ -19,5 +20,7 @@ public interface TrajectoriesService {
                                                 Date date,
                                                 Integer pageNumber,
                                                 Integer pageSize);
+
+    List<LastTrajectoryDTO> getLastTrajectory();
 
 }
